@@ -1,17 +1,27 @@
 <div class='container'>
-  <div class='jumbotron'>
-    <h1>Eli5</h1>
-    <p>
-      Need temporary storage for some of your stuff?<br>
-      Have extra space and want to make some money?
-    </p>
-    <p>
-      StoreItFor.Me safely connects folks together to easily rent storeage space on your terms.<br>
-      You set the time, price, and place. We take care of the rest.
-    </p>
-    <p>
-      <%= link_to 'Need Space', '#', class: 'btn btn-material-indigo btn-raised btn-lg' %>
-      <%= link_to 'Got Space', '#', class: 'btn btn-flat btn-material-indigo btn-default btn-raised btn-lg' %>
-    </p>
+  <div class='main-search'>
+    <div class='row'>
+      <div class='text-center'>
+        <div class='large-brand'>Tough Questions, Simple Answers</div>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
+        <div class='form-group'>
+          <input type='text' class='form-control floating-label' placeholder="Explain it like I'm five">
+        </div>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12 text-center'>
+        <%= link_to 'Explain', '#', class: 'btn btn-material-indigo btn-raised btn-sm' %>
+        <%= link_to 'Browse', '#', class: 'btn btn-flat btn-material-indigo btn-default btn-raised btn-sm hide' %>
+      </div>
+    </div>
   </div>
 </div>
+
+<style>
+  .main-search { margin-top: 40px; }
+  .large-brand { font-size: 40px; margin-bottom: 60px; color: #FFF; text-shadow: 0px 2px 12px #BABABA; }
+</style>
