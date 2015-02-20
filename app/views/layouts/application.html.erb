@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eli5</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <%= render 'layouts/header' %>
+
+  <%= render 'layouts/flash' %>
+
+  <%= yield %>
+
+  <%= javascript_include_tag 'application' %>
+
+</body>
+</html>

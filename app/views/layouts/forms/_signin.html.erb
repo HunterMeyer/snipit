@@ -1,0 +1,44 @@
+<%= form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal' } do |f| %>
+  <fieldset>
+    <div class='form-group form-group-material-indigo'>
+      <%= f.label :type, 'Account Type', class: 'col-lg-2 control-label' %>
+      <div class='col-lg-10'>
+        <div class='radio radio-material-indigo'>
+          <label>
+            <%= f.radio_button :type, 'Buyer' %>Buying Space
+          </label>
+        </div>
+        <div class='radio radio-material-indigo'>
+          <label>
+            <%= f.radio_button :type, 'Seller' %>Selling Space
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class='form-group form-group-material-indigo'>
+      <%= f.label :email, class: 'col-lg-2 control-label' %>
+      <div class='col-lg-10'>
+        <%= f.email_field :email, class: 'form-control', placeholder: 'your@email.com' %>
+      </div>
+    </div>
+    <div class='form-group form-group-material-indigo'>
+      <%= f.label :password, class: 'col-lg-2 control-label' %>
+      <div class='col-lg-10'>
+        <%= f.password_field :password, class: 'form-control', placeholder: '********', autocomplete: 'off' %>
+        <% if devise_mapping.rememberable? %>
+          <div class='checkbox checkbox-material-indigo'>
+            <label>
+              <%= f.check_box :remember_me %>Remember Me
+            </label>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class='form-group' style='margin: 25px -15px -15px -15px;'>
+      <div class='col-lg-10 col-lg-offset-2'>
+        <%= f.submit 'Sign In', class: 'btn btn-material-indigo' %>
+        <a href='#' class='btn btn-default' data-dismiss='modal' aria-hidden='true'>Cancel</a>
+      </div>
+    </div>
+  </fieldset>
+<% end %>
