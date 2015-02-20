@@ -8,12 +8,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
-gem 'devise'
 gem 'awesome_print'
 gem 'json'
 gem 'font-awesome-sass'
-gem 'paperclip'
-gem 'aws-sdk'
 gem 'bootstrap-material-design'
 
 group :production do
@@ -22,5 +19,6 @@ group :production do
 end
 
 group :test, :development do
+  gem 'rspec'
   gem 'pry'
 end
