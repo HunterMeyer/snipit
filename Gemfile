@@ -12,6 +12,7 @@ gem 'awesome_print'
 gem 'json'
 gem 'font-awesome-sass'
 gem 'bootstrap-material-design'
+gem 'redd'
 
 group :production do
   gem 'rails_12factor'
