@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Eli5::Application.config.secret_key_base = 'cf2af402f983a7ac57314b2dc2fb7fb8a22dc336888bceb9f585b4561f69e1e1a54c44ddeb8ff14231ed79c316413aeb9a3cfbbb8650184d269708c7c1b6f7ee'
+SnipIt::Application.config.secret_key_base = '829e0e52186b65350e0f36903c7b15fd57334d637227d6cc5562b0329a299888e872dd98ba6cc60a2e4af6cf07a02ea3a62af8b998b916cddb3fa8625d43795a'

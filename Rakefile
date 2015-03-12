@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Eli5::Application.load_tasks
+SnipIt::Application.load_tasks

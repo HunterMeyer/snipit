@@ -7,8 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore Mac files
+# Ignore Mac and RVM files
 /.DS_Store
+/.rvmrc
 
 # Ignore all logfiles and tempfiles.
 /log/*.log

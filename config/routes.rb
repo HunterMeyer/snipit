@@ -1,4 +1,4 @@
-Eli5::Application.routes.draw do
+SnipIt::Application.routes.draw do
   root 'home#index'
 
 end
