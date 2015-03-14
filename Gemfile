@@ -12,6 +12,9 @@ gem 'awesome_print'
 gem 'json'
 gem 'font-awesome-sass'
 gem 'bootstrap-material-design'
+gem 'bcrypt'
+gem 'aws-sdk'
+gem 'aescrypt'
 
 group :production do
   gem 'rails_12factor'
