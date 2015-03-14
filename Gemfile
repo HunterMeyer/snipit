@@ -13,7 +13,7 @@ gem 'json'
 gem 'font-awesome-sass'
 gem 'bootstrap-material-design'
 gem 'bcrypt'
-gem 'aws-sdk'
+gem 'aws-sdk-v1'
 gem 'aescrypt'
 
 group :production do
