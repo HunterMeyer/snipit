@@ -1,14 +1,15 @@
 class ApiController < ApplicationController  
-  http_basic_authenticate_with name:ENV["API_AUTH_NAME"], password:ENV["API_AUTH_PASSWORD"], :only => [:signup, :signin, :get_token]  
+  http_basic_authenticate_with name:ENV["API_AUTH_NAME"], password:ENV["API_AUTH_PASSWORD"], :only => [:signup, :signin, :get_token] 
+  skip_before_filter :verify_authenticity_token
   before_filter :check_for_valid_authtoken, :except => [:signup, :signin, :get_token]
   
   def signup
     if request.post?
-      if params && params[:full_name] && params[:email] && params[:password]
+      if params && params[:first_name] && params[:last_name] && params[:email] && params[:password]
         
         params[:user] = Hash.new    
-        params[:user][:first_name] = params[:full_name].split(" ").first
-        params[:user][:last_name] = params[:full_name].split(" ").last
+        params[:user][:first_name] = params[:first_name]
+        params[:user][:last_name] = params[:last_name]
         params[:user][:email] = params[:email]
         
         begin 
