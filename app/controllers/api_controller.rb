@@ -168,7 +168,7 @@ class ApiController < ApplicationController
             end
               
             s3_obj = bucket.objects[rand_id]
-            s3_obj.write(audio, :acl => :public_read)
+            s3_obj.write(audio, acl: :public_read, content_type: 'audio/wav')
             audio_url = s3_obj.public_url.to_s
                                                     
             snippet = Snippet.new(user_id: @user.id, audio_url: audio_url)
