@@ -1,14 +1,12 @@
 class User < ActiveRecord::Base
   attr_accessor :password
+  has_many :snippets
   before_save :encrypt_password
-  
   validates_confirmation_of :password  
   validates_presence_of :email, :on => :create    
-  validates :password, length: { in: 6..30 }, :on => :create 
-  
+  validates :password, length: { in: 6..30 }, :on => :create   
   validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   validates_uniqueness_of :email
-  # has_many :snippets
 
   def encrypt_password
     if password.present?      
