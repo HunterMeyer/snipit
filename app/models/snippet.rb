@@ -8,7 +8,7 @@ class Snippet < ActiveRecord::Base
   end
 
   def set_from
-    self.update(from: "#{self.user.first_name} #{self.user.last_name}")
+    update(from: "#{self.user.first_name} #{self.user.last_name}")
   end
 
   def to_json(options={})
