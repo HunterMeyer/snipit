@@ -171,7 +171,7 @@ class ApiController < ApplicationController
             s3_obj.write(audio, :acl => :public_read)
             audio_url = s3_obj.public_url.to_s
                                                     
-            snippet = Snippet.new(user_id: @user.id, image_url: audio_url)
+            snippet = Snippet.new(user_id: @user.id, audio_url: audio_url)
           
             if snippet.save
               render :json => snippet.to_json
