@@ -8,7 +8,7 @@ SnipIt::Application.routes.draw do
   post 'api/reset_password'
 
   post 'api/upload_snippet'
-  get 'api/get_snippet'
+  get 'api/get_snippets'
     
   get 'api/get_token'  
   get 'api/clear_token'
