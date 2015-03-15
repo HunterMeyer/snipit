@@ -151,55 +151,54 @@ class ApiController < ApplicationController
     end 
   end
   
-  # def upload_photo
-  #   if request.post?
-  #     if params[:title] && params[:image]          
-  #       if @user && @user.authtoken_expiry > Time.now
-  #         rand_id = rand_string(40)
-  #         image_name = params[:image].original_filename
-  #         image = params[:image].read     
+  def upload_snippet
+    if request.post?
+      if params[:audio]          
+        if @user && @user.authtoken_expiry > Time.now
+          rand_id = rand_string(40)
+          audio = params[:audio].read     
                     
-  #         s3 = AWS::S3.new
+          s3 = AWS::S3.new
             
-  #         if s3
-  #           bucket = s3.buckets[ENV["S3_BUCKET_NAME"]]
+          if s3
+            bucket = s3.buckets[ENV["S3_BUCKET_NAME"]]
               
-  #           if !bucket
-  #             bucket = s3.buckets.create(ENV["S3_BUCKET_NAME"])
-  #           end
+            if !bucket
+              bucket = s3.buckets.create(ENV["S3_BUCKET_NAME"])
+            end
               
-  #           s3_obj = bucket.objects[rand_id]
-  #           s3_obj.write(image, :acl => :public_read)
-  #           image_url = s3_obj.public_url.to_s
+            s3_obj = bucket.objects[rand_id]
+            s3_obj.write(audio, :acl => :public_read)
+            audio_url = s3_obj.public_url.to_s
                                                     
-  #           photo = Photo.new(:name => image_name, :user_id => @user.id, :title => params[:title], :image_url => image_url, :random_id => rand_id)
+            snippet = Snippet.new(user_id: @user.id, image_url: audio_url)
           
-  #           if photo.save
-  #             render :json => photo.to_json
-  #           else
-  #             error_str = ""
+            if snippet.save
+              render :json => snippet.to_json
+            else
+              error_str = ""
 
-  #             photo.errors.each{|attr, msg|           
-  #               error_str += "#{attr} - #{msg},"
-  #             }
+              snippet.errors.each{|attr, msg|           
+                error_str += "#{attr} - #{msg},"
+              }
                     
-  #             e = Error.new(:status => 400, :message => error_str)
-  #             render :json => e.to_json, :status => 400
-  #           end
-  #         else
-  #           e = Error.new(:status => 401, :message => "AWS S3 signature is wrong")
-  #           render :json => e.to_json, :status => 401              
-  #         end
-  #       else
-  #         e = Error.new(:status => 401, :message => "Authtoken has expired")
-  #         render :json => e.to_json, :status => 401
-  #       end
-  #     else
-  #       e = Error.new(:status => 400, :message => "required parameters are missing")
-  #       render :json => e.to_json, :status => 400
-  #     end
-  #   end
-  # end
+              e = Error.new(:status => 400, :message => error_str)
+              render :json => e.to_json, :status => 400
+            end
+          else
+            e = Error.new(:status => 401, :message => "AWS S3 signature is wrong")
+            render :json => e.to_json, :status => 401              
+          end
+        else
+          e = Error.new(:status => 401, :message => "Authtoken has expired")
+          render :json => e.to_json, :status => 401
+        end
+      else
+        e = Error.new(:status => 400, :message => "required parameters are missing")
+        render :json => e.to_json, :status => 400
+      end
+    end
+  end
 
   # def delete_photo
   #   if request.delete?
@@ -238,15 +237,15 @@ class ApiController < ApplicationController
   #   end
   # end
 
-  # def get_photos    
-  #   if @user && @user.authtoken_expiry > Time.now
-  #     photos = @user.photos
-  #     render :json => photos.to_json, :status => 200
-  #   else
-  #     e = Error.new(:status => 401, :message => "Authtoken has expired. Please get a new token and try again!")
-  #     render :json => e.to_json, :status => 401
-  #   end
-  # end
+  def get_snippets    
+    if @user && @user.authtoken_expiry > Time.now
+      snippets = @user.snippets
+      render :json => snippets.to_json, :status => 200
+    else
+      e = Error.new(:status => 401, :message => "Authtoken has expired. Please get a new token and try again!")
+      render :json => e.to_json, :status => 401
+    end
+  end
 
   private 
   
@@ -268,8 +267,8 @@ class ApiController < ApplicationController
     :email_verification, :api_authtoken, :authtoken_expiry)
   end
   
-  # def photo_params
-  #   params.require(:photo).permit(:name, :title, :user_id, :random_id, :image_url)
-  # end
+  def photo_params
+    params.require(:snippet).permit(:user_id, :reference, :audio_url, :status)
+  end
     
 end
