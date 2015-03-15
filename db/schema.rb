@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150315064901) do
   create_table "snippets", force: true do |t|
     t.text     "audio_url"
     t.text     "reference"
+    t.text     "status",     default: "Active"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
